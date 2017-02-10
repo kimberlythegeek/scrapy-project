@@ -29,13 +29,11 @@
           </h2>
           <table class="table table-hover table-striped" ng-if="wwr_state">
             <tr class="row result" ng-repeat="result in jobs.sources['We Work Remotely'].results | filter: jobs.search">
-              <td class="col-xs-2">{{ result.date[0] }}</td>
+              <td class="col-xs-2">{{ result.date }}</td>
               <td class="col-xs-6">
-                <a ng-href="http://weworkremotely.com{{result.url[0]}}">{{ result.title[0] }}</a>
+                <a ng-href="http://weworkremotely.com{{ result.url }}">{{ result.title }}</a>
               </td>
-              <td class="col-xs-4">
-                {{ result.company[0] }}
-              </td>
+              <td class="col-xs-4">{{ result.company }}</td>
             </tr>
           </table>
           
@@ -44,10 +42,10 @@
             <i ng-show="cg_state" class="fa fa-minus" ng-click="cg_state=!cg_state"></i>
           </h2>
           <table class="table table-hover table-striped" ng-if="cg_state">
-            <tr ng-repeat="result in jobs.sources['Craigslist'].results | orderBy: '-date' | filter: jobs.search">
-              <td class="col-xs-2">{{ result.date[0] }}</td>
+            <tr ng-repeat="result in jobs.sources['Craigslist'].results | orderBy: '-date' | filter: jobs.search" ng-if="result.title">
+              <td class="col-xs-2">{{ result.date }}</td>
               <td class="col-xs-10">
-                <a ng-href="{{ result.url }}">{{ result.title[0] }}</a>
+                <a ng-href="{{ result.url }}">{{ result.title }}</a>
               </td>
             </tr>
           </table>
@@ -58,10 +56,11 @@
           </h2>
           <table class="table table-hover table-striped" ng-if="so_state">
             <tr ng-repeat="result in jobs.sources['Stack Overflow'].results | filter: jobs.search">
-              <td class="col-xs-8">
-                <a ng-href="{{ result.url[0] }}">{{ result.title[0] }}</a>
+              <td class="col-xs-2">{{ result.date }}</td>
+              <td class="col-xs-6">
+                <a ng-href="{{ result.url }}">{{ result.title }}</a>
               </td>
-              <td class="col-xs-4">{{ result.company[0] }}</td>
+              <td class="col-xs-4">{{ result.company }}</td>
             </tr>
           </table>
         </div>

@@ -29,26 +29,15 @@ class JobsSpider(scrapy.Spider):
     ]
 
     def parse(self, response):
-        # for result in response.css('li.result-row'):
-        #     yield {
-        #         'title': result.css('a.result-title::text').extract(),
-        #         'url': result.css('a.result-title::attr(href)').extract(),
-        #     }
-        
+
         # follow links to listing pages
         for href in response.css('.result-info a::attr(href)').extract():
             yield scrapy.Request(response.urljoin(href),
                                 callback=self.parse_listing)
-    #     
-    #     # follow pagination links
-    #     next_page = response.css('span.next a::attr(href)').extract_first()
-    #     if next_page is not None:
-    #         next_page = response.urljoin(next_page)
-    #         yield scrapy.Request(next_page, callback=self.parse)
-    # 
+
     def parse_listing(self, response):
         yield {
-            'title': response.css('#titletextonly::text').extract(),
-            'date': response.css('#display-date time::text').extract(),
+            'title': response.css('#titletextonly::text').extract_first(),
+            'date': response.css('#display-date time::text').extract_first(),
             'url': response.request.url
         }
