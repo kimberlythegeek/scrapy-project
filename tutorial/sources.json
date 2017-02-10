@@ -1,0 +1,13 @@
+{
+	"sources": {
+    "Craigslist": {
+      "file": "craigslist.json"
+    },
+    "We Work Remotely": {
+      "file": "wwr.json"
+    },
+    "Stack Overflow": {
+      "file": "so.json"
+    }
+	}
+}

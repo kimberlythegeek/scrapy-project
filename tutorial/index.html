@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="jobListings">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+
+  </head>
+
+  <header>
+  </header>
+
+  <body ng-controller="JobsController as jobs">
+    
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-6 col-xs-offset-3">
+          
+          <input type="text" class="form-control" ng-model="jobs.search" />
+          
+          <h2>We Work Remotely <span class="badge">{{ (jobs.sources['We Work Remotely'].results | filter: jobs.search).length }}</span>
+            <i ng-show="!wwr_state" class="fa fa-plus" ng-click="wwr_state=!wwr_state"></i>
+            <i ng-show="wwr_state" class="fa fa-minus" ng-click="wwr_state=!wwr_state"></i>
+          </h2>
+          <table class="table table-hover table-striped" ng-if="wwr_state">
+            <tr class="row result" ng-repeat="result in jobs.sources['We Work Remotely'].results | filter: jobs.search">
+              <td class="col-xs-2">{{ result.date[0] }}</td>
+              <td class="col-xs-6">
+                <a ng-href="http://weworkremotely.com{{result.url[0]}}">{{ result.title[0] }}</a>
+              </td>
+              <td class="col-xs-4">
+                {{ result.company[0] }}
+              </td>
+            </tr>
+          </table>
+          
+          <h2>Craigslist <span class="badge">{{ (jobs.sources['Craigslist'].results | filter: jobs.search).length }}</span>
+            <i ng-show="!cg_state" class="fa fa-plus" ng-click="cg_state=!cg_state"></i>
+            <i ng-show="cg_state" class="fa fa-minus" ng-click="cg_state=!cg_state"></i>
+          </h2>
+          <table class="table table-hover table-striped" ng-if="cg_state">
+            <tr ng-repeat="result in jobs.sources['Craigslist'].results | orderBy: '-date' | filter: jobs.search">
+              <td class="col-xs-2">{{ result.date[0] }}</td>
+              <td class="col-xs-10">
+                <a ng-href="{{ result.url }}">{{ result.title[0] }}</a>
+              </td>
+            </tr>
+          </table>
+          
+          <h2>Stack Overflow <span class="badge">{{ (jobs.sources['Stack Overflow'].results | filter: jobs.search).length }}</span>
+            <i ng-show="!so_state" class="fa fa-plus" ng-click="so_state=!so_state"></i>
+            <i ng-show="so_state" class="fa fa-minus" ng-click="so_state=!so_state"></i>
+          </h2>
+          <table class="table table-hover table-striped" ng-if="so_state">
+            <tr ng-repeat="result in jobs.sources['Stack Overflow'].results | filter: jobs.search">
+              <td class="col-xs-8">
+                <a ng-href="{{ result.url[0] }}">{{ result.title[0] }}</a>
+              </td>
+              <td class="col-xs-4">{{ result.company[0] }}</td>
+            </tr>
+          </table>
+        </div>
+      </div> <!-- .row -->
+    </div><!-- .container-fluid -->
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script 
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+      crossorigin="anonymous"></script>
+    <script src="lib/angular.min.js"></script>
+    <script src="src/app.js"></script>
+
+  </body>
+
+  <footer>
+  </footer>
+</html>
