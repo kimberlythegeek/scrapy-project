@@ -4,3 +4,6 @@
 body {
   padding: 3rem;
 }
+jobs-source h2 {
+  cursor: pointer;
+}

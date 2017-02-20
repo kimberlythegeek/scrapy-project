@@ -3,6 +3,7 @@
 
   angular.module('jobListings',[])
   .controller('JobsController', JobsController)
+  .directive('jobsSource', jobsSource)
   .service('DataService', DataService);
 
   JobsController.$inject = ['$scope', 'DataService'];
@@ -25,6 +26,13 @@
         console.log(_this.sources);
       });
     });
+  }
+
+  function jobsSource() {
+    return {
+      restrict: 'E',
+      templateUrl: 'src/jobs-source.directive.html'
+    };
   }
 
   DataService.$inject = ['$http'];

@@ -1,0 +1,33 @@
+<h2 ng-click="source.state=!source.state">{{ source.name }}<span class="badge">{{ (source.results | filter: jobs.search | filter: {title: ''}).length }}</span>
+  <i ng-show="!source.state" class="fa fa-plus"></i>
+  <i ng-show="source.state" class="fa fa-minus"></i>
+</h2>
+<table class="table table-hover table-striped" ng-if="source.state">
+  <tr ng-if="source.name.includes('We Work Remotely')" 
+      class="row result" 
+      ng-repeat="result in source.results | filter: jobs.search | orderBy:'$index':true">
+    <td class="col-xs-2">{{ result.date }}</td>
+    <td class="col-xs-6">
+      <a ng-href="{{ result.url }}">{{ result.title }}</a>
+    </td>
+    <td class="col-xs-4">{{ result.company }}</td>
+  </tr>
+  <tr ng-if="source.name.includes('Craigslist')" 
+      class="row result" 
+      ng-repeat="result in source.results | filter: jobs.search | filter: {title: ''} | orderBy: '-date'">
+    <td class="col-xs-2">{{ result.date }}</td>
+    <td class="col-xs-6">
+      <a ng-href="{{ result.url }}">{{ result.title }}</a>
+    </td>
+    <td class="col-xs-4">{{ result.company }}</td>
+  </tr>
+  <tr ng-if="source.name.includes('Stack Overflow')"  
+      class="row result" 
+      ng-repeat="result in source.results | filter: jobs.search | filter: {title: ''} ">
+    <td class="col-xs-2">{{ result.date }}</td>
+    <td class="col-xs-6">
+      <a ng-href="{{ result.url }}">{{ result.title }}</a>
+    </td>
+    <td class="col-xs-4">{{ result.company }}</td>
+  </tr>
+</table>

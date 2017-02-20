@@ -1,0 +1,10 @@
+#!/bin/bash
+# Delete old JSON files and scrape Job Listing Sites
+
+rm so.json so-den.json cg.json cg-den.json wwr.json
+scrapy crawl cg -o cg.json
+scrapy crawl cg-den -o cg-den.json
+scrapy crawl so -o so.json
+scrapy crawl so-den -o so-den.json
+scrapy crawl wwr -o wwr.json
+browser-sync start --server --files *
