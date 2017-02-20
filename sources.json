@@ -13,6 +13,10 @@
       "file": "so.json"
     },
     {
+      "name": "Built in Colorado",
+      "file": "bic.json"
+    },
+    {
       "name": "Denver - Stack Overflow",
       "file": "so-den.json"
     },
