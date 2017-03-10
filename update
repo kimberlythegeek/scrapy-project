@@ -8,4 +8,4 @@ scrapy crawl so -o so.json
 scrapy crawl so-den -o so-den.json
 scrapy crawl wwr -o wwr.json
 scrapy crawl bic -o bic.json
-browser-sync start --server --files *
+browser-sync start --server --files index.html
