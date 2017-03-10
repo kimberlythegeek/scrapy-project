@@ -16,12 +16,36 @@
   </header>
 
   <body ng-controller="JobsController as jobs">
-    
+
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-6 col-xs-offset-3">
-          
-          <input type="text" class="form-control" ng-model="jobs.search" />
+
+          <label for="include">Include:</label>
+          <div class="input-group">
+            <span class="input-group-addon" id="include-addon">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </span>
+            <input
+              id="include"
+              type="text"
+              class="form-control"
+              ng-model="jobs.include"
+              aria-describedby="include-addon" />
+          </div>
+          <br />
+          <label for="exclude">Exclude:</label>
+          <div class="input-group">
+            <span class="input-group-addon" id="exclude-addon">
+              <i class="fa fa-ban" aria-hidden="true"></i>
+            </span>
+            <input
+              id="exclude"
+              type="text"
+              class="form-control"
+              ng-model="jobs.exclude"
+              aria-describedby="exclude-addon" />
+          </div>
 
           <jobs-source ng-repeat="source in jobs.sources"></jobs-source>
 
@@ -32,9 +56,9 @@
       src="https://code.jquery.com/jquery-3.1.1.min.js"
       integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
       crossorigin="anonymous"></script>
-    <script 
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
-      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
       crossorigin="anonymous"></script>
     <script src="lib/angular.min.js"></script>
     <script src="src/app.js"></script>

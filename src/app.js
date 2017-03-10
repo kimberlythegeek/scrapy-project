@@ -4,6 +4,7 @@
   angular.module('jobListings',[])
   .controller('JobsController', JobsController)
   .directive('jobsSource', jobsSource)
+  .filter('excludeFilter', excludeFilter)
   .service('DataService', DataService);
 
   JobsController.$inject = ['$scope', 'DataService'];
@@ -23,7 +24,6 @@
           // Append list of results to JSON Object
           _this.sources[key]["results"] = response.data;
         });
-        console.log(_this.sources);
       });
     });
   }
@@ -33,6 +33,21 @@
       restrict: 'E',
       templateUrl: 'src/jobs-source.directive.html'
     };
+  }
+
+
+  function excludeFilter() {
+    return function (input, exclude) {
+      var output = [];
+      angular.forEach(input, function(result) {
+        if(exclude && result.title !== null) {
+          if (!result.title.toLowerCase().includes(exclude)) {
+            output.push(result);
+          }
+        } else output.push(result);
+      });
+      return output;
+    }
   }
 
   DataService.$inject = ['$http'];
@@ -48,7 +63,6 @@
     };
 
     _this.getJobResults = function(file) {
-      console.log(file);
       var response = $http({
         method: 'GET',
         url: (file),
