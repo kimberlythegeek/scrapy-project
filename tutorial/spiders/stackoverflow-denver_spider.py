@@ -12,7 +12,9 @@ class StackOverflowSpider(scrapy.Spider):
                 'company': result.css('div div.fc-black-700.fs-body2::text').extract_first(),
                 'title': result.css('div .job-details__spaced .job-link::text').extract_first(),
                 'date': result.css('div span.fc-black-500.t24::text').extract_first(),
-                'url': result.css('div .job-details__spaced .job-link::attr(href)').extract_first(),
+                'url': 'http://stackoverflow.com/{}'.format(
+                        result.css('div .job-details__spaced .job-link::attr(href)').extract_first()
+                        ),
             }
 
         # follow pagination links

@@ -1,0 +1,28 @@
+{
+	"sources": [
+    {
+      "name": "Craigslist",
+      "file": "cg.json"
+    },
+    {
+      "name": "We Work Remotely",
+      "file": "wwr.json"
+    },
+    {
+      "name": "Stack Overflow",
+      "file": "so.json"
+    },
+    {
+      "name": "Built in Colorado",
+      "file": "bic.json"
+    },
+    {
+      "name": "Denver - Stack Overflow",
+      "file": "so-den.json"
+    },
+    {
+      "name": "Denver - Craigslist",
+      "file": "cg-den.json"
+    }
+	]
+}
